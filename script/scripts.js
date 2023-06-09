@@ -16,17 +16,6 @@ const graficoParaDolar = new Chart(graficoDolar, {
   },
 });
 
-async function conectaAPI() {
-  const conecta = await fetch(
-    "https://economia.awesomeapi.com.br/json/last/USD-BRL"
-  );
-  const conectaTraduzido = await conecta.json();
-  const valorDolar = conectaTraduzido.USDBRL.high;
-
-  adicionarDados(graficoParaDolar, geraHorario(), valorDolar);
-  imprimeCotacao("dolar", valorDolar);
-}
-
 function geraHorario() {
   let data = new Date();
 
@@ -45,5 +34,15 @@ function adicionarDados(grafico, legenda, dados) {
   grafico.update();
 }
 
-setInterval(conectaAPI, 5000);
 setInterval(geraHorario, 1000);
+
+let workerDolar = new Worker("./script/workers/workerDolar.js");
+workerDolar.postMessage("usd");
+
+workerDolar.addEventListener("message", (e) => {
+  let tempo = geraHorario();
+  let valor = e.data.ask;
+
+  imprimeCotacao("dolar", valor);
+  adicionarDados(graficoParaDolar, tempo, valor);
+});
