@@ -46,3 +46,30 @@ workerDolar.addEventListener("message", (e) => {
   imprimeCotacao("dolar", valor);
   adicionarDados(graficoParaDolar, tempo, valor);
 });
+
+const graficoIene = document.getElementById("graficoIene");
+const graficoParaIene = new Chart(graficoIene, {
+    type: "line",
+    data: {
+        labels: [],
+        datasets: [
+            {
+                label: "Iene",
+                data: [],
+                borderWidth: 1,
+            },
+        ],
+    },
+});
+
+let workerIene = new Worker("./script/workers/workerIene.js");
+workerIene.postMessage("jpy");
+
+workerIene.addEventListener("message", (e) => {
+    let tempo = geraHorario();
+    let valor = e.data.ask;
+
+    imprimeCotacao("iene", valor);
+    adicionarDados(graficoParaIene, tempo, valor);
+});
+    
