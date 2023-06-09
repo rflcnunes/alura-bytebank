@@ -11,16 +11,16 @@ function selecionaCotacao(nome, valor) {
 function imprimeCotacao(lista, nome, valor) {
   lista.innerHTML = "";
   const plurais = {
-    dolar: "dolares",
+    dolar: "dólares",
     iene: "ienes",
     euro: "euros",
   };
 
   for (let multiplicador = 1; multiplicador <= 1000; multiplicador *= 10) {
     const listaItem = document.createElement("li");
-    listaItem.innerHTML = `${multiplicador} ${
-      multiplicador == 1 ? nome : plurais[nome]
-    }: R$${(valor * multiplicador).toFixed(2)}`;
+    const moedaPlural = multiplicador === 1 ? nome : plurais[nome];
+    const cotacao = (valor * multiplicador).toFixed(2);
+    listaItem.textContent = `${multiplicador} ${moedaPlural}: R$${cotacao}`;
     lista.appendChild(listaItem);
   }
 }
