@@ -40,10 +40,11 @@
 }
 
 .investimentos__lista {
-    margin: 2em;
     color: var(--cinza);
+    list-style: none;
+    margin: 0 0 0 10px;
 }
 
 .investimentos__lista li {
-    margin: 1em 0;
+    margin: 0.5em 0;
 }
