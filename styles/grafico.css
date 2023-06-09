@@ -1,55 +1,68 @@
 .dadosDolar,
 .dadosIene,
 .dadosEuro {
-    margin: 3em auto;
-    padding: 2em;
-    display: flex;
-    justify-content: space-between;
-    background-color: white;
-    border-radius: 24px;
-    width: 65%;
-    color: var(--cinza);
+  display: flex;
+  flex-direction: row;
+  max-width: fit-content;
+  margin: 10px auto;
+  background-color: var(--cinza-claro);
+  padding: 20px;
+  border-radius: 10px;
 }
 
 .grafico {
-    width: 30vw;
+  max-width: 500px;
 }
 
 .grafico__titulo {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .grafico__titulo span {
-    background-repeat: no-repeat;
-    width: 50px;
-    height: 40px;
+  background-repeat: no-repeat;
 }
 
 .grafico__ilustracao-dolar {
-    background-image: url('../imagens/cifrao.png');
+  background-image: url("../imagens/cifrao.png");
 }
 
 .grafico__ilustracao-iene {
-    background-image: url('../imagens/iene.png');
+  background-image: url("../imagens/iene.png");
 }
 
 .grafico__ilustracao-euro {
-    background-image: url('../imagens/euro.png');
+  background-image: url("../imagens/euro.png");
 }
 
 .grafico__titulo h2 {
-    color: var(--cinza);
-    font-weight: 700;
-    font-size: 24px;
+  color: var(--cinza);
+  font-weight: 500;
+  font-size: 24px;
+  font-family: "Sarabun", sans-serif;
 }
 
 .investimentos__lista {
-    color: var(--cinza);
-    list-style: none;
-    margin: 0 0 0 10px;
+  color: var(--cinza);
+  list-style: none;
+  margin: 0 0 0 10px;
 }
 
 .investimentos__lista li {
-    margin: 0.5em 0;
+  margin: 0.5em 0;
+  display: flex;
+  align-items: flex-start;
+}
+
+@media (max-width: 768px) {
+  .dadosDolar,
+  .dadosIene,
+  .dadosEuro {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .grafico {
+    margin: 40px 0;
+  }
 }
